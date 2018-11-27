@@ -35,4 +35,35 @@ $(function () {
     }
   })
 
+  $('#form').on('success.form.bv', function (e) {
+    //阻止表单的提交，使用ajax提交
+    e.preventDefault();
+    $.ajax({
+      type: 'post',
+      url: '/employee/employeeLogin',
+      data: $('#form').serialize(),
+      dataType: 'json',
+      success: function (info) {
+        console.log(info);
+        if (info.error === 1000) {
+          alert('用户名不存在')
+          return
+        }
+        if (info.error === 1001) {
+          alert('密码错误')
+          return
+        }
+        if(info.success){
+          location.href='index.html'
+        }
+      }
+    })
+  })
+
+  //重置提交页面
+  $('[type = reset]').click(function () {
+    $('#form').data('bootstrapValidator').resetForm()
+  })
+
+
 })
