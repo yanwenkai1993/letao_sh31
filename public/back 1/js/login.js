@@ -18,9 +18,6 @@ $(function () {
             max: 12,
             min: 2,
             message: '用户名必须2-12位'
-          },
-          callback:{
-            message:'用户名不存在'
           }
         }
       },
@@ -33,9 +30,6 @@ $(function () {
             max:20,
             min:6,
             message:'密码必须由6-20位'
-          },
-          callback:{
-            message:'密码错误'
           }
         }
       }
@@ -54,10 +48,10 @@ $(function () {
      success: function(info){
        console.log(info);
        if(info.error===1000){
-        $('#form').data('bootstrapValidator').updateStatus('username','INVALID','callback')
+         alert('用户名不存在')
        }
        if(info.error===1001){
-        $('#form').data('bootstrapValidator').updateStatus('password','INVALID','callback')
+         alert('密码错误')
        }
        if(info.success){
          location.href='index.html'

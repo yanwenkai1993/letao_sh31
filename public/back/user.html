@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
   <link rel="stylesheet" href="./css/common.css">
-  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/user.css">
 </head>
 
 <body>
@@ -22,8 +22,8 @@
       <p>超级管理员</p>
     </div>
     <ul class="lt_list">
-      <li>
-        <a href="user.html">
+      <li class="active">
+        <a href="javascript:;">
           <i class="glyphicon glyphicon-user"></i>
           <span>用户管理</span>
         </a>
@@ -60,15 +60,30 @@
       <!-- 面包屑导航 -->
       <ol class="breadcrumb">
         <li><a href="index.html">管理系统</a></li>
-        <li class="active">首页</li>
+        <li class="active">用户管理</li>
       </ol>
-      <!-- 准备好的两个盒子 -->
-      <div class="lt_content">
-        <div class="lt_left pull-left"></div>
-        <div class="lt_right pull-right"></div>
-      </div>
-    </div>
-     
+<!-- 表格 -->
+   <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>用户名</th>
+        <th>手机号</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+       <tbody>
+         <tr>
+           <td>1</td>
+           <td>itcast</td>
+           <td>15757771111</td>
+           <td>正常</td>
+           <td><button class="btn btn-danger">禁用</button></td>
+         </tr>
+       </tbody>
+
+   </table>
 
   </div>
 
@@ -104,7 +119,7 @@
     <script src="./lib/nprogress/nprogress.js"></script>
     <script src="./js/isLogin.js"></script>
     <script src="./js/common.js"></script>
-    <script src="./js/index.js"></script>
+    
 </body>
 
 </html>
