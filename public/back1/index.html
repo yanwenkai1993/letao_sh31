@@ -13,15 +13,18 @@
 </head>
 
 <body>
-  <div class="lt_sidebar">
-    <div class="lt_titel">
-      <a href="javascript:;">黑马31期</a>
+  <!-- 侧边栏 -->
+  <div class="lt_offside">
+    <div class="lt_ti">
+      <a href="#">黑马31期</a>
     </div>
-    <div class="lt_head">
-      <img src="./images/sec05.jpg" alt="">
-      <p>超级管理员</p>
+    <div class="lt_img">
+      <a href="#">
+        <img src="./images/sec05.jpg" alt="">
+        <p>超级管理员</p>
+      </a>
     </div>
-    <ul class="lt_list">
+    <ul class="lt_menu">
       <li>
         <a href="user.html">
           <i class="glyphicon glyphicon-user"></i>
@@ -29,47 +32,49 @@
         </a>
       </li>
       <li>
-        <a href="javascript:;" class="classify">
-          <i class="glyphicon glyphicon-user"></i>
+        <a href="#">
+          <i class="glyphicon glyphicon-list"></i>
           <span>分类管理</span>
         </a>
-        <div class="second">
-          <a href="#">一级分类</a>
-          <a href="#">一级分类</a>
+        <div class="second" style="display: none;">
+          <a href="#">一级管理</a>
+          <a href="#">二级管理</a>
         </div>
       </li>
       <li>
-        <a href="javascript:;">
-          <i class="glyphicon glyphicon-user"></i>
+        <a href="#">
+          <i class="glyphicon glyphicon-tags"></i>
           <span>商品管理</span>
         </a>
       </li>
     </ul>
   </div>
-  <!-- 头部+++++++++++ -->
-  <div class="lt_info">
-    <div class="lt_title">
-      <a href="javascript:;" class="pull-left icon_left">
-        <i class="glyphicon glyphicon-align-justify"></i>
-      </a>
-      <a href="javascript:;" class="pull-right icon_right">
-        <i class="glyphicon glyphicon-log-out"></i>
-      </a>
+  <!-- 头部 -->
+  <div class="lt_title">
+    <div class="headline">
+      <a href="#" class="pull-left icon-left"><i class="glyphicon glyphicon-align-justify"></i></a>
+      <a href="#" class="pull-right icon-right"><i class="glyphicon glyphicon-log-out"></i></a>
     </div>
-    <div class="container-fluid">
+    <div class="lt_nav">
       <!-- 面包屑导航 -->
       <ol class="breadcrumb">
         <li><a href="index.html">管理系统</a></li>
         <li class="active">首页</li>
       </ol>
-      <!-- 准备好的两个盒子 -->
-      <div class="lt_content">
-        <div class="lt_left pull-left"></div>
-        <div class="lt_right pull-right"></div>
-      </div>
+
+      <!-- echarts 准备的容器 -->
+     <div class="vessel">
+       <div class="vessel_left  pull-left" ></div>
+       <div class="vessel_right  pull-right"></div>
+     </div>
     </div>
   </div>
-  <!-- 模态框  -->
+
+
+
+
+
+  <!-- 模态框 -->
   <div class="modal fade" id="myModal" tabindex="-1">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -86,13 +91,14 @@
         </div>
       </div>
     </div>
-    <script src="./lib/jquery/jquery.min.js"></script>
-    <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./lib/echarts/echarts.min.js"></script>
-    <script src="./lib/nprogress/nprogress.js"></script>
-    <script src="./js/isLogin.js"></script>
-    <script src="./js/common.js"></script>
-    <script src="./js/index.js"></script>
+  </div>
+  <script src="./lib/jquery/jquery.min.js"></script>
+  <script src="./lib/bootstrap/js/bootstrap.js"></script>
+  <script src="./lib/echarts/echarts.min.js"></script>
+  <script src="./js/isLogin.js"></script>
+  <script src="./lib/nprogress/nprogress.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/index.js"></script>
 </body>
 
 </html>
