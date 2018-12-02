@@ -85,32 +85,40 @@ $(function () {
 
 
   //配置文件上传插件，让插件发送异步请求
-  $('#fileId').fileupload({
-    dataType: 'json',
-    done: function (e, data) {
+  $('#fileupload').fileupload({
+    dataType: "json",
+    // done 表示文件上传完成的回调函数
+    done: function( e, data ) {
+      //console.log( data );
+      //console.log( data.result ); // 后台返回的对象
 
+      var picObj = data.result; // 后台返回的数据
+      // 获取图片地址, 设置给 img src
+      var picUrl = picObj.picAddr;
+      $('#imgBox img').attr("src", picUrl);
 
-      //后台返回的数据
-      var picObj = data.result
-      //获取图片地址，设置给 img src 
-      var picUrl = picObj.picAddr
-      $('#imgBox img').attr('src', picUrl)
-      $('[name="brandLogo"]').val(picUrl);
-      //调用插件完成更新 隐藏域 校验状态成 VALID
+      // 给隐藏域设置图片地址
+      $('[name="brandLogo"]').val( picUrl );
+
+      // 调用updateStatus更新 隐藏域 校验状态成 VALID
       $('#form').data("bootstrapValidator").updateStatus("brandLogo", "VALID")
     }
-  })
+  });
 
-  //添加表单校验功能
+
+  // 5. 添加表单校验功能
   $('#form').bootstrapValidator({
-    //重置排除想，然隐藏域也能校验
+    // 重置排除项, 都校验, 不排除
     excluded: [],
+
     // 配置校验图标
     feedbackIcons: {
-      valid: 'glyphicon glyphicon-ok', // 校验成功
-      invalid: 'glyphicon glyphicon-remove', // 校验失败
-      validating: 'glyphicon glyphicon-refresh' // 校验中
+      valid: 'glyphicon glyphicon-ok',    // 校验成功
+      invalid: 'glyphicon glyphicon-remove',   // 校验失败
+      validating: 'glyphicon glyphicon-refresh'  // 校验中
     },
+
+    // 指定校验字段
     fields: {
       categoryId: {
         validators: {
@@ -134,34 +142,40 @@ $(function () {
         }
       }
     }
-  })
+  });
 
 
+  // 6. 注册表单校验成功事件, 阻止默认的表单提交, 通过ajax提交
+  $('#form').on("success.form.bv", function( e ) {
 
-  //阻止表单校验，使用ajax发送请求
-  $('#form').on('success.form.bv', function (e) {
-    e.preventDefault()
-    //发送ajax请求
+    e.preventDefault(); // 阻止默认的提交
+
     $.ajax({
-      type:'post',
-      url:'/category/addSecondCategory',
-      data:$('#form').serialize(),//因为图片已经把地址赋值给了隐藏域所以可以使用表单序列化提交
-      dataType:'json',
-      success:function(info){
-        console.log(info)
-        if(info.success){
-          //关闭模态框
-          $('#secondModal').modal("hide")
-          //重新渲染第一页
-          paga=1
+      type: "post",
+      url: "/category/addSecondCategory",
+      data: $('#form').serialize(),
+      dataType: "json",
+      success: function( info ) {
+        console.log( info );
+        if ( info.success ) {
+          // 添加成功
+          // 关闭模态框
+          $('#addModal').modal("hide");
+          // 页面重新渲染, 重新渲染第一页
+          Page = 1;
           render();
-          //重置表单
-          $('#form').data('bootstrapValidator').resetForm(true)
+
+          // 重置表单内容和状态, resetForm(true) 表示内容和状态都重置
+          $('#form').data("bootstrapValidator").resetForm( true );
+
+          // 由于下拉菜单和图片不是表单元素, 需要手动重置
+          $('#dropdownText').text("请选择一级分类");
+          $('#imgBox img').attr("src", "./images/none.png");
         }
       }
     })
+
   })
 
-  
 
 })

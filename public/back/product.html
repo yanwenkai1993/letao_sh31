@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>乐淘电商</title>
   <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.min.css">
   <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
   <link rel="stylesheet" href="./css/common.css">
 </head>
@@ -89,16 +90,20 @@
 
 
   <!-- 模态框  -->
-  <div class="modal fade" id="productModal" tabindex="-1">
-    <div class="modal-dialog ">
+  <div class="modal fade" id="addModal" tabindex="-1">
+    <!-- 模态框  modal-lg 大型,  默认中型    modal-sm 小型 -->
+    <div class="modal-dialog">
       <div class="modal-content">
         <form id="form">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">添加商品</h4>
+            <h4 class="modal-title">添加商品</h4>
           </div>
           <div class="modal-body">
+            <!-- bootstrap有格式规范, 每一行需要外层包一个 form-group -->
+  
             <div class="form-group">
+              <!-- 下拉框 -->
               <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                   <span id="dropdownText">请选择二级分类</span>
@@ -108,43 +113,59 @@
                   <!-- 挖个坑 -->
                 </ul>
               </div>
-              <!-- 隐藏域 -->
+  
               <input type="hidden" name="brandId">
+  
+             
             </div>
+  
             <div class="form-group">
-              <input type="text" placeholder="请输入商品名称" class="form-control" name="proName">
+              <input type="text" name="proName" class="form-control" placeholder="请输入商品名称">
             </div>
+  
             <div class="form-group">
-              <textarea name="proDesc" class="form-control" cols="30" rows="4" placeholder="请输入商品描述"></textarea>
+              <textarea name="proDesc" class="form-control" cols="30" rows="4" placeholder="请输入商品描述" ></textarea>
             </div>
+  
             <div class="form-group">
-              <input type="text" placeholder="请输入商品库存" class="form-control" name="num">
+              <input type="text" name="num" class="form-control" placeholder="请输入商品库存">
             </div>
+            
             <div class="form-group">
-              <input type="text" placeholder="请输入商品尺码" class="form-control" name="size">
+              <input type="text" name="size" class="form-control" placeholder="请输入商品尺码">
             </div>
+  
             <div class="form-group">
-              <input type="text" placeholder="请输入商品原价" class="form-control" name="oldPrice">
+              <input type="text" name="oldPrice" class="form-control" placeholder="请输入商品原价">
             </div>
+  
             <div class="form-group">
-              <input type="text" placeholder="请输入商品现价" class="form-control" name="price">
+              <input type="text" name="price" class="form-control" placeholder="请输入商品现价">
             </div>
+  
+  
             <div class="form-group">
               <label for="fileupload" class="btn btn-default">上传图片</label>
-              <input type="file" id="fileupload" multiple
-              name="pic1" data-url="/product/addProductPic"  style="display:none;">
+              <!--
+                指定name, 用于后台接收图片对象
+                指定data-url, 配置后台图片上传的接口地址
+                multiple 就可以选择多个文件, 一般用于多文件上传
+              -->
+              <input type="file" multiple name="pic1" data-url="/product/addProductPic" id="fileupload" style="display: none;">
             </div>
-              <!-- 准备一个隐藏域用来校验图片 还要准备一个用来显示图片 -->
-           <div class="form-group" id="imgBox">
-
-            <!-- 隐藏域用来校验图片是否满了三张 -->
-            <input type="hidden" name="pisStatus">
-           </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button type="submit" class="btn btn-primary">添加</button>
+  
+            <div class="form-group" id="imgBox">
+              <!--<img src="./images/none.png" style="width: 100px;">-->
+  
+              <!-- 准备一个专门用于校验的隐藏域, 标记图片上传是否满3张 -->
+              <input type="hidden" name="picStatus">
             </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="submit" class="btn btn-primary">添加</button>
+          </div>
         </form>
       </div>
     </div>
